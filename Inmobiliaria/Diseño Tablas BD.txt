@@ -1,0 +1,42 @@
+Table t001_ventas {
+  f001_ref_venta int [pk]
+  f001_ts_alta datetime
+  f001_divisa varchar
+  f001_precio_venta money
+  f001_operacion varchar
+  f001_tipo_inmueble varchar
+  f001_superficie varchar
+  f001_ts_venta datetime
+  f001_id_vendedor int
+  f001_cedula_cliente int
+  f001_pais varchar
+  f001_provincia varchar
+  f001_ciudad varchar
+    Indexes {
+      (f001_ref_venta) [name:'f001_ref_venta_index']
+      }
+  }
+
+Table t002_vendedores {
+  f002_id int [pk]
+  f002_nombre varchar
+  f002_correo varchar
+  f002_cedula int [not null, unique]
+  f002_telefono varchar
+    Indexes {
+      (f002_id) [name:'f002_id_index']
+      }
+ }
+
+Table t003_clientes {
+  f003_cedula int [pk]
+  f003_nombre varchar
+  f003_correo varchar [not null, unique]
+  f003_telefono varchar
+    Indexes {
+      (f003_cedula) [name:'f003_cedula_index']
+      }
+ }
+
+Ref: t001_ventas.f001_id_vendedor > t002_vendedores.f002_id  
+Ref: t001_ventas.f001_cedula_cliente > t003_clientes.f003_cedula

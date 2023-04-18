@@ -1,0 +1,925 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/10/2023 4:20:45 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MSI"
+  DTS:CreatorName="MSI\atica"
+  DTS:Description="SSIS Package for import data from excel"
+  DTS:DTSID="{94FCCD37-AE31-4790-AA6F-7AF82A63667D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5107.0"
+  DTS:LocaleID="3082"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="ImportData"
+  DTS:ProtectionLevel="0"
+  DTS:VersionGUID="{040443BE-BAE8-4A8D-9A9C-DAFCA165A4BA}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{734C5C52-D57D-43AA-B7F5-1FF91D1C36A9}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=MSI;Initial Catalog=Inmobiliaria;Provider=SQLOLEDB;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionExcel]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{A6D09E7F-CEA5-4D6F-B17C-DB60F055B9B2}"
+      DTS:ObjectName="SourceConnectionExcel">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\SQL\Inmobiliaria\BBDD Ventas.xlsx;Extended Properties=&quot;Excel 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task 1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{EA6F669C-ECCE-42A4-9C55-F10EDA7985F7}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task 1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task 1\Destination - tbImporteManual"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination - tbImporteManual"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[tbImporteManual]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Destination - tbImporteManual.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Referencia Venta]"
+                      cachedDataType="r8"
+                      cachedName="Referencia Venta"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Referencia Venta]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Referencia Venta]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Id Vendedor]"
+                      cachedDataType="r8"
+                      cachedName="Id Vendedor"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Id Vendedor]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Id Vendedor]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Fecha y hora Alta]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Fecha y hora Alta"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Fecha y hora Alta]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Fecha y hora Alta]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Tipo Inmueble]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Tipo Inmueble"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Tipo Inmueble]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Tipo Inmueble]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Operación]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Operación"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Operación]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Operación]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Superficie]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Superficie"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Superficie]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Superficie]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Divisa]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Divisa"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Divisa]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Divisa]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Precio Venta]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Precio Venta"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Precio Venta]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Precio Venta]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Fecha Venta]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Fecha Venta"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Fecha Venta]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Fecha Venta]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Vendedor]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Vendedor"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Vendedor]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Vendedor]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[comprador]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="comprador"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[comprador]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[comprador]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Correo Vendedor]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Correo Vendedor"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Correo Vendedor]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Correo Vendedor]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Correo comprador]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Correo comprador"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Correo comprador]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Correo comprador]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Cedula comprador]"
+                      cachedDataType="r8"
+                      cachedName="Cedula comprador"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Cedula comprador]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Cedula comprador]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Cedula Vendedor]"
+                      cachedDataType="r8"
+                      cachedName="Cedula Vendedor"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Cedula Vendedor]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Cedula Vendedor]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Pais]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Pais"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Pais]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Pais]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Provincia]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Provincia"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Provincia]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Provincia]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Ciudad]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Ciudad"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Ciudad]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Ciudad]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Telefono comprador]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Telefono comprador"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Telefono comprador]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Telefono comprador]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].Columns[Telefono Vendedor]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Telefono Vendedor"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Telefono Vendedor]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Telefono Vendedor]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Referencia Venta]"
+                      dataType="r8"
+                      name="Referencia Venta" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Id Vendedor]"
+                      dataType="r8"
+                      name="Id Vendedor" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Fecha y hora Alta]"
+                      dataType="wstr"
+                      length="255"
+                      name="Fecha y hora Alta" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Tipo Inmueble]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tipo Inmueble" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Operación]"
+                      dataType="wstr"
+                      length="255"
+                      name="Operación" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Superficie]"
+                      dataType="wstr"
+                      length="255"
+                      name="Superficie" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Divisa]"
+                      dataType="wstr"
+                      length="255"
+                      name="Divisa" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Precio Venta]"
+                      dataType="wstr"
+                      length="255"
+                      name="Precio Venta" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Fecha Venta]"
+                      dataType="wstr"
+                      length="255"
+                      name="Fecha Venta" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Vendedor]"
+                      dataType="wstr"
+                      length="255"
+                      name="Vendedor" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[comprador]"
+                      dataType="wstr"
+                      length="255"
+                      name="comprador" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Correo Vendedor]"
+                      dataType="wstr"
+                      length="255"
+                      name="Correo Vendedor" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Correo comprador]"
+                      dataType="wstr"
+                      length="255"
+                      name="Correo comprador" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Cedula comprador]"
+                      dataType="r8"
+                      name="Cedula comprador" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Cedula Vendedor]"
+                      dataType="r8"
+                      name="Cedula Vendedor" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Pais]"
+                      dataType="wstr"
+                      length="255"
+                      name="Pais" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Provincia]"
+                      dataType="wstr"
+                      length="255"
+                      name="Provincia" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Telefono comprador]"
+                      dataType="wstr"
+                      length="255"
+                      name="Telefono comprador" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input].ExternalColumns[Telefono Vendedor]"
+                      dataType="wstr"
+                      length="255"
+                      name="Telefono Vendedor" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Destination - tbImporteManual.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - tbImporteManual.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - tbImporteManual.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - tbImporteManual.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Source - BBDD$"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Source - BBDD$"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">BBDD$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Source - BBDD$.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionExcel]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionExcel]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Referencia Venta]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Referencia Venta]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Referencia Venta]"
+                      name="Referencia Venta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Id Vendedor]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Id Vendedor]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Id Vendedor]"
+                      name="Id Vendedor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Fecha y hora Alta]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Fecha y hora Alta]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Fecha y hora Alta]"
+                      name="Fecha y hora Alta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Tipo Inmueble]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Tipo Inmueble]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Tipo Inmueble]"
+                      name="Tipo Inmueble"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Operación]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Operación]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Operación]"
+                      name="Operación"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Superficie]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Superficie]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Superficie]"
+                      name="Superficie"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Divisa]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Divisa]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Divisa]"
+                      name="Divisa"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Precio Venta]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Precio Venta]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Precio Venta]"
+                      name="Precio Venta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Fecha Venta]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Fecha Venta]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Fecha Venta]"
+                      name="Fecha Venta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Vendedor]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Vendedor]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Vendedor]"
+                      name="Vendedor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[comprador]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[comprador]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[comprador]"
+                      name="comprador"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Correo Vendedor]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Correo Vendedor]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Correo Vendedor]"
+                      name="Correo Vendedor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Correo comprador]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Correo comprador]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Correo comprador]"
+                      name="Correo comprador"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Cedula comprador]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Cedula comprador]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Cedula comprador]"
+                      name="Cedula comprador"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Cedula Vendedor]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Cedula Vendedor]"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Cedula Vendedor]"
+                      name="Cedula Vendedor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Pais]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Pais]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Pais]"
+                      name="Pais"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Provincia]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Provincia]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Provincia]"
+                      name="Provincia"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Ciudad]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Ciudad]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Ciudad]"
+                      name="Ciudad"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Telefono comprador]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Telefono comprador]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Telefono comprador]"
+                      name="Telefono comprador"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Telefono Vendedor]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Telefono Vendedor]"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].Columns[Telefono Vendedor]"
+                      name="Telefono Vendedor"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Referencia Venta]"
+                      dataType="r8"
+                      name="Referencia Venta" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Id Vendedor]"
+                      dataType="r8"
+                      name="Id Vendedor" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Fecha y hora Alta]"
+                      dataType="wstr"
+                      length="255"
+                      name="Fecha y hora Alta" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Tipo Inmueble]"
+                      dataType="wstr"
+                      length="255"
+                      name="Tipo Inmueble" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Operación]"
+                      dataType="wstr"
+                      length="255"
+                      name="Operación" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Superficie]"
+                      dataType="wstr"
+                      length="255"
+                      name="Superficie" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Divisa]"
+                      dataType="wstr"
+                      length="255"
+                      name="Divisa" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Precio Venta]"
+                      dataType="wstr"
+                      length="255"
+                      name="Precio Venta" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Fecha Venta]"
+                      dataType="wstr"
+                      length="255"
+                      name="Fecha Venta" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Vendedor]"
+                      dataType="wstr"
+                      length="255"
+                      name="Vendedor" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[comprador]"
+                      dataType="wstr"
+                      length="255"
+                      name="comprador" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Correo Vendedor]"
+                      dataType="wstr"
+                      length="255"
+                      name="Correo Vendedor" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Correo comprador]"
+                      dataType="wstr"
+                      length="255"
+                      name="Correo comprador" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Cedula comprador]"
+                      dataType="r8"
+                      name="Cedula comprador" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Cedula Vendedor]"
+                      dataType="r8"
+                      name="Cedula Vendedor" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Pais]"
+                      dataType="wstr"
+                      length="255"
+                      name="Pais" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Provincia]"
+                      dataType="wstr"
+                      length="255"
+                      name="Provincia" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      name="Ciudad" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Telefono comprador]"
+                      dataType="wstr"
+                      length="255"
+                      name="Telefono comprador" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output].ExternalColumns[Telefono Vendedor]"
+                      dataType="wstr"
+                      length="255"
+                      name="Telefono Vendedor" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Referencia Venta]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Referencia Venta]"
+                      name="Referencia Venta" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Id Vendedor]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Id Vendedor]"
+                      name="Id Vendedor" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Fecha y hora Alta]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Fecha y hora Alta]"
+                      name="Fecha y hora Alta" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Tipo Inmueble]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Tipo Inmueble]"
+                      name="Tipo Inmueble" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Operación]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Operación]"
+                      name="Operación" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Superficie]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Superficie]"
+                      name="Superficie" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Divisa]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Divisa]"
+                      name="Divisa" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Precio Venta]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Precio Venta]"
+                      name="Precio Venta" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Fecha Venta]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Fecha Venta]"
+                      name="Fecha Venta" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Vendedor]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Vendedor]"
+                      name="Vendedor" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[comprador]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[comprador]"
+                      name="comprador" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Correo Vendedor]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Correo Vendedor]"
+                      name="Correo Vendedor" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Correo comprador]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Correo comprador]"
+                      name="Correo comprador" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Cedula comprador]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Cedula comprador]"
+                      name="Cedula comprador" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Cedula Vendedor]"
+                      dataType="r8"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Cedula Vendedor]"
+                      name="Cedula Vendedor" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Pais]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Pais]"
+                      name="Pais" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Provincia]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Provincia]"
+                      name="Provincia" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Ciudad]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Ciudad]"
+                      name="Ciudad" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Telefono comprador]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Telefono comprador]"
+                      name="Telefono comprador" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Telefono Vendedor]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[Telefono Vendedor]"
+                      name="Telefono Vendedor" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task 1.Paths[Excel Source Output]"
+              endId="Package\Data Flow Task 1\Destination - tbImporteManual.Inputs[Destination Input]"
+              name="Excel Source Output"
+              startId="Package\Data Flow Task 1\Source - BBDD$.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Preparation SQL Task 1"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{34C9ED23-4B0A-421B-BF11-59864C517A72}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Preparation SQL Task 1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{734C5C52-D57D-43AA-B7F5-1FF91D1C36A9}"
+          SQLTask:SqlStatementSource="CREATE TABLE [dbo].[tbImporteManual] (&#xA;[Referencia Venta] float,&#xA;[Id Vendedor] float,&#xA;[Fecha y hora Alta] nvarchar(255),&#xA;[Tipo Inmueble] nvarchar(255),&#xA;[Operación] nvarchar(255),&#xA;[Superficie] nvarchar(255),&#xA;[Divisa] nvarchar(255),&#xA;[Precio Venta] nvarchar(255),&#xA;[Fecha Venta] nvarchar(255),&#xA;[Vendedor] nvarchar(255),&#xA;[comprador] nvarchar(255),&#xA;[Correo Vendedor] nvarchar(255),&#xA;[Correo comprador] nvarchar(255),&#xA;[Cedula comprador] float,&#xA;[Cedula Vendedor] float,&#xA;[Pais] nvarchar(255),&#xA;[Provincia] nvarchar(255),&#xA;[Ciudad] nvarchar(255),&#xA;[Telefono comprador] nvarchar(255),&#xA;[Telefono Vendedor] nvarchar(255)&#xA;)&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[{9DA002E7-2683-4803-9924-56819133F407\}]"
+      DTS:CreationName=""
+      DTS:DTSID="{9DA002E7-2683-4803-9924-56819133F407}"
+      DTS:From="Package\Preparation SQL Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="{9DA002E7-2683-4803-9924-56819133F407}"
+      DTS:To="Package\Data Flow Task 1" />
+  </DTS:PrecedenceConstraints>
+</DTS:Executable>
